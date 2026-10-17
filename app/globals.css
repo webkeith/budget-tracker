@@ -1,0 +1,125 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-card-hover: var(--card-hover);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-glass: var(--glass);
+  --color-fg: var(--text-primary);
+  --color-fg-2: var(--text-secondary);
+  --color-fg-3: var(--text-tertiary);
+  --color-accent: var(--accent);
+  --color-income: var(--income);
+  --color-payable: var(--payable);
+  --color-due: var(--due-soon);
+  --color-savings: var(--savings);
+  --color-investments: var(--investments);
+  --color-responsibilities: var(--responsibilities);
+  --color-assets: var(--assets);
+  --color-expenses: var(--expenses);
+  --radius-card: var(--radius-card);
+  --radius-btn: var(--radius-button);
+  --radius-tile: var(--radius-tile);
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --shadow-soft: var(--shadow-soft);
+  --shadow-float: var(--shadow-float);
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    background: var(--bg);
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: color-mix(in srgb, var(--accent) 40%, transparent);
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 8px;
+  }
+  input,
+  select,
+  textarea,
+  button {
+    font: inherit;
+    color: inherit;
+  }
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.7);
+    cursor: pointer;
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.55;
+  }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+@layer components {
+  .card {
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    box-shadow: inset 0 1px 0 var(--highlight), var(--shadow-soft);
+  }
+  .glass {
+    background: var(--glass);
+    -webkit-backdrop-filter: saturate(180%) blur(24px);
+    backdrop-filter: saturate(180%) blur(24px);
+  }
+  .num {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+  .label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .mesh-glow {
+    background:
+      radial-gradient(60% 80% at 15% 0%, rgba(10, 132, 255, 0.2) 0%, transparent 60%),
+      radial-gradient(50% 70% at 85% 20%, rgba(191, 90, 242, 0.17) 0%, transparent 65%),
+      radial-gradient(60% 60% at 60% 110%, rgba(94, 92, 230, 0.15) 0%, transparent 60%);
+  }
+  .pb-safe {
+    padding-bottom: max(env(safe-area-inset-bottom), 0px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
